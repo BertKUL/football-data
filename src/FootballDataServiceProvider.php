@@ -24,13 +24,14 @@ class FootballDataServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //Bert: customized x-response-control from full to minified
         $this->app->bind('football', function()
         {
             $client = new Client([
                 'base_uri'  =>  'http://api.football-data.org/v1/',
                     'headers'   =>  [
                                         'X-Auth-Token' => getenv('FootballData_API_KEY'),
-                                        'X-Response-Control' => 'full',
+                                        'X-Response-Control' => 'minified',
                                     ]
             ]);
             return new FootballData($client);
